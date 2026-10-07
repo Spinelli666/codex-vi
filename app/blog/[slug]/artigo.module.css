@@ -1,0 +1,46 @@
+.cabecalho {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cabecalho > * + * {
+  margin-top: 0.6rem;
+}
+
+.carregando {
+  color: var(--cor-texto-suave);
+}
+
+.vizinhos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.vizinhos a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-family: var(--familia-titulo);
+  text-decoration: none;
+}
+
+.vizinhos a:hover {
+  text-decoration: underline;
+}
+
+.vizinhos span {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+.proximo {
+  grid-column: -2;
+  text-align: right;
+}
