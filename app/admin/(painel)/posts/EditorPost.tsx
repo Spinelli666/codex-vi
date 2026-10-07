@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState, useTransition } from "react";
+import { type ClipboardEvent, useActionState, useEffect, useRef, useState, useTransition } from "react";
 import prosa from "@/components/Prosa.module.css";
 import { gerarSlug } from "@/lib/texto";
 import admin from "../../admin.module.css";
@@ -55,8 +55,17 @@ export default function EditorPost({ inicial = vazio, mensagem }: { inicial?: Da
     iniciarPrevia(async () => setHtml(await previsualizar(post.conteudo)));
   }
 
+  // Colar (Ctrl+V) um print ou uma imagem copiada envia e insere no texto.
+  // Texto colado continua funcionando normalmente.
+  function colar(evento: ClipboardEvent<HTMLTextAreaElement>) {
+    const imagem = [...evento.clipboardData.files].find((f) => f.type.startsWith("image/"));
+    if (!imagem) return;
+    evento.preventDefault();
+    if (!enviandoImagem) enviarImagem(imagem, "imagem");
+  }
+
   // Envia a imagem e insere o Markdown dela onde o cursor estava.
-  async function enviarImagem(arquivo: File) {
+  async function enviarImagem(arquivo: File, descricaoPadrao?: string) {
     setErroImagem("");
     setEnviandoImagem(true);
     try {
@@ -66,7 +75,8 @@ export default function EditorPost({ inicial = vazio, mensagem }: { inicial?: Da
       const corpo = await resposta.json();
       if (!resposta.ok) throw new Error(corpo.erro ?? "Falha no envio.");
 
-      const descricao = arquivo.name.replace(/\.[^.]+$/, "").replace(/[[\]]/g, "");
+      // Prints colados chegam como "image.png": nesse caso usa uma descrição genérica.
+      const descricao = descricaoPadrao ?? arquivo.name.replace(/\.[^.]+$/, "").replace(/[[\]]/g, "");
       const trecho = `![${descricao}](${corpo.url})`;
       const campo = textoRef.current;
       const inicio = campo?.selectionStart ?? post.conteudo.length;
@@ -170,10 +180,17 @@ export default function EditorPost({ inicial = vazio, mensagem }: { inicial?: Da
             rows={24}
             value={post.conteudo}
             onChange={(e) => mudar("conteudo", e.target.value)}
+            onPaste={colar}
             hidden={aba !== "escrever"}
             aria-label="Conteúdo em Markdown"
+            aria-describedby="dica-conteudo"
             spellCheck
           />
+          {aba === "escrever" && (
+            <p id="dica-conteudo" className={admin.ajuda}>
+              Markdown. Para pôr uma imagem, use o botão acima ou cole (Ctrl+V) um print ou uma imagem copiada.
+            </p>
+          )}
           {aba === "visualizar" && (
             <div className={estilos.previa} aria-busy={carregandoPrevia}>
               {carregandoPrevia ? (
