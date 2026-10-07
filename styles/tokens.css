@@ -24,6 +24,12 @@
   --cor-purpura: light-dark(#4a1942, #c9a0c0); /* títulos, links */
   --cor-dourado: light-dark(#7d5f2e, #b8935a); /* tags, metadados */
 
+  /* Estados */
+  --cor-erro: light-dark(#a1262c, #f08a80);
+
+  /* Bordas de campos de formulário (WCAG pede 3:1 para componentes de interface) */
+  --cor-borda-campo: light-dark(#8a8378, #6f695f);
+
   /* Decorativas (não usadas para texto) */
   --cor-borda: light-dark(#d9d3c7, #34312b);
   --cor-selecao: light-dark(#e4d3e0, #4a1942);
