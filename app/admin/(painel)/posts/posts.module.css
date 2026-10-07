@@ -1,0 +1,67 @@
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.tabela :is(th, td) {
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+  text-align: left;
+  vertical-align: top;
+}
+
+.tabela th {
+  font-family: var(--familia-titulo);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+.tabela td:first-child a:first-child {
+  font-family: var(--familia-titulo);
+  font-weight: 500;
+}
+
+.ver {
+  font-size: 0.8125rem;
+  color: var(--cor-texto-suave);
+}
+
+.publicado,
+.rascunho {
+  font-size: 0.875rem;
+  font-family: var(--familia-titulo);
+}
+
+.publicado {
+  color: var(--cor-dourado);
+}
+
+.rascunho {
+  color: var(--cor-texto-suave);
+  font-style: italic;
+}
+
+.data {
+  white-space: nowrap;
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+}
+
+@media (max-width: 40rem) {
+  .tabela th:last-child,
+  .tabela td:last-child {
+    display: none;
+  }
+}

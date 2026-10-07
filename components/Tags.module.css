@@ -1,0 +1,23 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tags a {
+  font-family: var(--familia-titulo);
+  font-size: 0.875rem;
+  color: var(--cor-dourado);
+  text-decoration: none;
+}
+
+.tags a:hover {
+  text-decoration: underline;
+}
+
+.total {
+  color: var(--cor-texto-suave);
+}

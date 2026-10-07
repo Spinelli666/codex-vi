@@ -1,0 +1,33 @@
+.apresentacao > * + * {
+  margin-top: 0.75rem;
+}
+
+.lema {
+  font-family: var(--familia-titulo);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--cor-dourado);
+}
+
+.recentes {
+  margin-top: 3rem;
+}
+
+.rotulo {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1.5rem;
+  font-family: var(--familia-titulo);
+}

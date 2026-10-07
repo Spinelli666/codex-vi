@@ -1,0 +1,38 @@
+.ano + .ano {
+  margin-top: 2.5rem;
+}
+
+.ano h2 {
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.mes {
+  margin-top: 1.25rem;
+}
+
+.mes h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-dourado);
+}
+
+.mes ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.4rem;
+}
+
+.mes li {
+  display: flex;
+  gap: 1rem;
+  padding: 0.2rem 0;
+}
+
+.mes time {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--cor-texto-suave);
+}

@@ -1,0 +1,44 @@
+.lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.item:first-child {
+  padding-top: 0;
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.item article > * + * {
+  margin-top: 0.35rem;
+}
+
+.titulo {
+  font-size: 1.5rem;
+}
+
+.titulo a {
+  color: var(--cor-purpura);
+  text-decoration: none;
+}
+
+.titulo a:hover {
+  text-decoration: underline;
+}
+
+.resumo {
+  font-size: 1.0625rem;
+}
+
+.vazio {
+  color: var(--cor-texto-suave);
+  font-style: italic;
+}

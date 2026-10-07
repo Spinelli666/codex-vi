@@ -1,0 +1,112 @@
+/* Estilo do texto de um artigo (HTML gerado a partir do Markdown). */
+
+.prosa {
+  overflow-wrap: break-word;
+}
+
+.prosa > :global(*) + :global(*) {
+  margin-top: 1.25em;
+}
+
+.prosa :global(h2) {
+  margin-top: 2em;
+  font-size: 1.625rem;
+}
+
+.prosa :global(h3) {
+  margin-top: 1.75em;
+  font-size: 1.3125rem;
+}
+
+.prosa :global(:is(h2, h3, h4) + *) {
+  margin-top: 0.6em;
+}
+
+.prosa :global(:is(ul, ol)) {
+  padding-left: 1.4em;
+}
+
+.prosa :global(li + li) {
+  margin-top: 0.35em;
+}
+
+.prosa :global(li::marker) {
+  color: var(--cor-dourado);
+}
+
+.prosa :global(blockquote) {
+  padding: 0.25em 0 0.25em 1.1em;
+  border-left: 3px solid var(--cor-dourado);
+  font-style: italic;
+  color: var(--cor-texto-suave);
+}
+
+.prosa :global(hr) {
+  border: 0;
+  text-align: center;
+  margin-block: 2.5em;
+}
+
+/* Separador romano: três pontos dourados */
+.prosa :global(hr)::after {
+  content: "· · ·";
+  color: var(--cor-dourado);
+  letter-spacing: 0.5em;
+}
+
+.prosa :global(img) {
+  margin-inline: auto;
+  border-radius: var(--raio);
+}
+
+.prosa :global(:not(pre) > code) {
+  padding: 0.1em 0.35em;
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+}
+
+/* Blocos de código do Shiki: cada <span> traz as duas cores em variáveis
+   (--shiki-claro e --shiki-escuro) e o light-dark() escolhe pelo tema. */
+.prosa :global(pre) {
+  padding: 1rem 1.15rem;
+  border-radius: var(--raio);
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: light-dark(var(--shiki-claro), var(--shiki-escuro));
+  font-size: 0.875rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  tab-size: 4;
+}
+
+.prosa :global(pre code) {
+  font-size: inherit;
+}
+
+.prosa :global(pre span) {
+  color: light-dark(var(--shiki-claro), var(--shiki-escuro));
+}
+
+.prosa :global(table) {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.prosa :global(:is(th, td)) {
+  padding: 0.4em 0.8em;
+  border: 1px solid var(--cor-borda);
+  text-align: left;
+}
+
+.prosa :global(th) {
+  font-family: var(--familia-titulo);
+  background: var(--cor-superficie);
+}
+
+.prosa :global(input[type="checkbox"]) {
+  margin-right: 0.4em;
+  accent-color: var(--cor-purpura);
+}

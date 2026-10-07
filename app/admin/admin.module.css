@@ -1,0 +1,112 @@
+/* Estilos compartilhados do painel admin. */
+
+.login {
+  max-width: 24rem;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-family: var(--familia-titulo);
+  font-size: 0.9375rem;
+}
+
+.formulario :is(input, textarea) {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--cor-borda-campo);
+  border-radius: var(--raio);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font: inherit;
+  font-family: var(--familia-corpo);
+  font-size: 1rem;
+}
+
+.formulario textarea {
+  font-family: var(--familia-codigo);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.formulario :is(input, textarea):focus-visible {
+  outline: 2px solid var(--cor-purpura);
+  outline-offset: 1px;
+}
+
+.ajuda {
+  font-family: var(--familia-corpo);
+  font-size: 0.8125rem;
+  color: var(--cor-texto-suave);
+}
+
+.erro {
+  padding: 0.6rem 0.8rem;
+  border-left: 3px solid var(--cor-erro);
+  background: var(--cor-superficie);
+  color: var(--cor-erro);
+  font-size: 0.9375rem;
+}
+
+.sucesso {
+  padding: 0.6rem 0.8rem;
+  border-left: 3px solid var(--cor-dourado);
+  background: var(--cor-superficie);
+  font-size: 0.9375rem;
+}
+
+.botao,
+.botaoPrimario,
+.botaoPerigo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--cor-borda-campo);
+  border-radius: var(--raio);
+  background: transparent;
+  color: var(--cor-texto);
+  font-family: var(--familia-titulo);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.botao:hover {
+  border-color: var(--cor-purpura);
+  color: var(--cor-purpura);
+}
+
+.botaoPrimario {
+  border-color: var(--cor-purpura);
+  background: var(--cor-purpura);
+  color: var(--cor-fundo);
+}
+
+.botaoPrimario:hover {
+  filter: brightness(1.15);
+}
+
+.botaoPerigo {
+  border-color: var(--cor-erro);
+  color: var(--cor-erro);
+}
+
+.botaoPerigo:hover {
+  background: var(--cor-erro);
+  color: var(--cor-fundo);
+}
+
+:is(.botao, .botaoPrimario, .botaoPerigo):disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
