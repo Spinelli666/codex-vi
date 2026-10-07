@@ -1,0 +1,99 @@
+// Schema do Codex VI.
+// Os modelos e campos ficam em camelCase no TypeScript e são mapeados para
+// snake_case no banco com @map / @@map.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum StatusPost {
+  rascunho
+  publicado
+}
+
+model Post {
+  id           String     @id @default(uuid()) @db.Uuid
+  titulo       String
+  slug         String     @unique
+  resumo       String?
+  conteudo     String // Markdown
+  imagemCapa   String?    @map("imagem_capa")
+  status       StatusPost @default(rascunho)
+  criadoEm     DateTime   @default(now()) @map("criado_em")
+  atualizadoEm DateTime   @updatedAt @map("atualizado_em")
+  publicadoEm  DateTime?  @map("publicado_em")
+
+  tags     PostTag[]
+  curtidas Curtida[]
+
+  // Listagem pública: publicados, mais recentes primeiro
+  @@index([status, publicadoEm(sort: Desc)])
+  @@map("posts")
+}
+
+model Tag {
+  id   String @id @default(uuid()) @db.Uuid
+  nome String @unique
+  slug String @unique
+
+  posts PostTag[]
+
+  @@map("tags")
+}
+
+model PostTag {
+  postId String @map("post_id") @db.Uuid
+  tagId  String @map("tag_id") @db.Uuid
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+  @@index([tagId])
+  @@map("posts_tags")
+}
+
+// Curtida anônima: o visitanteId é um UUID guardado em cookie.
+// A unique (post_id, visitante_id) impede curtir duas vezes o mesmo post.
+model Curtida {
+  id          String   @id @default(uuid()) @db.Uuid
+  postId      String   @map("post_id") @db.Uuid
+  visitanteId String   @map("visitante_id") @db.Uuid
+  criadoEm    DateTime @default(now()) @map("criado_em")
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, visitanteId])
+  @@map("curtidas")
+}
+
+model UsuarioAdmin {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique
+  senhaHash String   @map("senha_hash") // Argon2id
+  criadoEm  DateTime @default(now()) @map("criado_em")
+
+  sessoes Sessao[]
+
+  @@map("usuarios_admin")
+}
+
+// O cookie leva um token aleatório; aqui fica só o hash SHA-256 dele.
+// Se o banco vazar, os tokens não podem ser usados.
+model Sessao {
+  id        String   @id @default(uuid()) @db.Uuid
+  tokenHash String   @unique @map("token_hash")
+  usuarioId String   @map("usuario_id") @db.Uuid
+  expiraEm  DateTime @map("expira_em")
+  criadoEm  DateTime @default(now()) @map("criado_em")
+
+  usuario UsuarioAdmin @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@index([usuarioId])
+  @@map("sessoes")
+}

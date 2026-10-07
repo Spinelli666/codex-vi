@@ -1,0 +1,11 @@
+.rodape {
+  border-top: 1px solid var(--cor-borda);
+  padding: 1.5rem var(--espaco-lateral);
+  text-align: center;
+  font-size: 0.9375rem;
+  color: var(--cor-texto-suave);
+}
+
+.rodape a {
+  color: var(--cor-dourado);
+}

@@ -1,0 +1,52 @@
+/*
+ * Tokens do Codex VI — "Roxo imperial discreto".
+ *
+ * Cada cor usa light-dark(<tema claro>, <tema escuro>). O navegador escolhe
+ * o valor conforme o color-scheme: por padrão segue o sistema, e o botão de
+ * tema força um dos dois via [data-theme] no <html>.
+ *
+ * Contraste (WCAG AA exige 4,5:1 para texto). Confira com:
+ *   npm run contraste
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* Fundos */
+  --cor-fundo: light-dark(#f7f5f0, #161512); /* branco osso / preto tinta */
+  --cor-superficie: light-dark(#ede9e0, #211f1b); /* cards, blocos de código */
+
+  /* Texto */
+  --cor-texto: light-dark(#161512, #f7f5f0);
+  --cor-texto-suave: light-dark(#5c574e, #a8a196); /* datas, legendas */
+
+  /* Identidade */
+  --cor-purpura: light-dark(#4a1942, #c9a0c0); /* títulos, links */
+  --cor-dourado: light-dark(#7d5f2e, #b8935a); /* tags, metadados */
+
+  /* Decorativas (não usadas para texto) */
+  --cor-borda: light-dark(#d9d3c7, #34312b);
+  --cor-selecao: light-dark(#e4d3e0, #4a1942);
+
+  /* Tipografia (as variáveis --fonte-* vêm do next/font no layout) */
+  --familia-titulo: var(--fonte-titulo), "Georgia", serif;
+  --familia-corpo: var(--fonte-corpo), "Georgia", serif;
+  --familia-codigo: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+
+  --texto-base: 1.1875rem; /* 19px: confortável para leitura longa */
+  --altura-linha: 1.65;
+
+  /* Layout */
+  --largura-texto: 42rem;
+  --largura-pagina: 64rem;
+  --espaco-lateral: 1rem;
+  --raio: 4px;
+}
+
+[data-theme="claro"] {
+  color-scheme: light;
+}
+
+[data-theme="escuro"] {
+  color-scheme: dark;
+}

@@ -1,0 +1,77 @@
+.cabecalho {
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.interno {
+  max-width: var(--largura-pagina);
+  margin-inline: auto;
+  padding: 1rem var(--espaco-lateral);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--familia-titulo);
+  font-size: 1.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--cor-purpura);
+  text-decoration: none;
+}
+
+.numeral {
+  color: var(--cor-dourado);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 100%; /* no celular, deixa a lista quebrar linha em vez de vazar */
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: 0.25rem 1.25rem;
+  list-style: none;
+  padding: 0;
+}
+
+.nav a {
+  font-family: var(--familia-titulo);
+  font-size: 1rem;
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--cor-purpura);
+  text-decoration: underline;
+}
+
+.botaoTema {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--cor-texto);
+  cursor: pointer;
+}
+
+.botaoTema:hover {
+  color: var(--cor-purpura);
+  border-color: var(--cor-purpura);
+}
